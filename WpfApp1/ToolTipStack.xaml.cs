@@ -15,22 +15,21 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 
-namespace WpfApp1
-{
+namespace Assistant {
     /// <summary>
     /// Логика взаимодействия для Glass.xaml
     /// </summary>
-    public partial class ToolTipStack: Window {
-        private int count;
+    public partial class CToolTipStack: Window {
+        private int Count;
         public ObservableCollection<CToolTip> Items { get; set; }
-        public ToolTipStack() {
+        public CToolTipStack() {
             InitializeComponent();
             Items = new ObservableCollection<CToolTip>();
             lbToolTip.ItemsSource = Items;
         }
         public void Push(string aMessage, string aTitle = "", int aDelay = 3000) {
-            CToolTip t = new CToolTip(aMessage, aTitle, aDelay, count, this);
-            count++;
+            CToolTip t = new CToolTip(aMessage, aTitle, aDelay, Count, this);
+            Count++;
             Items.Add(t);
         }
         public void Remove(int aNum) {

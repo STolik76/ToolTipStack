@@ -67,7 +67,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ToolTip.cs" />
+    <Compile Include="CDir.cs" />
+    <Compile Include="CFile.cs" />
+    <Compile Include="CToolTip.cs" />
     <Compile Include="ToolTipStack.xaml.cs">
       <DependentUpon>ToolTipStack.xaml</DependentUpon>
     </Compile>

@@ -1,0 +1,17 @@
+D:\Git\C#\Glass\WpfApp1\bin\Debug\WpfApp1.exe.config
+D:\Git\C#\Glass\WpfApp1\bin\Debug\WpfApp1.exe
+D:\Git\C#\Glass\WpfApp1\bin\Debug\WpfApp1.pdb
+D:\Git\C#\Glass\WpfApp1\obj\Debug\Assistant.csprojAssemblyReference.cache
+D:\Git\C#\Glass\WpfApp1\obj\Debug\ToolTipStack.g.cs
+D:\Git\C#\Glass\WpfApp1\obj\Debug\MainWindow.g.cs
+D:\Git\C#\Glass\WpfApp1\obj\Debug\App.g.cs
+D:\Git\C#\Glass\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
+D:\Git\C#\Glass\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.lref
+D:\Git\C#\Glass\WpfApp1\obj\Debug\ToolTipStack.baml
+D:\Git\C#\Glass\WpfApp1\obj\Debug\MainWindow.baml
+D:\Git\C#\Glass\WpfApp1\obj\Debug\WpfApp1.g.resources
+D:\Git\C#\Glass\WpfApp1\obj\Debug\WpfApp1.Properties.Resources.resources
+D:\Git\C#\Glass\WpfApp1\obj\Debug\Assistant.csproj.GenerateResource.cache
+D:\Git\C#\Glass\WpfApp1\obj\Debug\Assistant.csproj.CoreCompileInputs.cache
+D:\Git\C#\Glass\WpfApp1\obj\Debug\WpfApp1.exe
+D:\Git\C#\Glass\WpfApp1\obj\Debug\WpfApp1.pdb
