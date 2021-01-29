@@ -7,53 +7,83 @@
         mc:Ignorable="d"
         Title="Помошник технолога" Height="450" Width="800" Closed="Window_Closed">
     <Grid>
-
-            <TabControl Grid.Row="0">
-                <TabItem Header="Файлы">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <ListBox Grid.Row="0" x:Name="lbFiles">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Border BorderThickness="3" BorderBrush="Aqua">
-                                        <StackPanel>
-                                            <Label Content="{Binding DirName}"/>
-                                            <ListBox ItemsSource="{Binding Files}">
-                                                <ListBox.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel>
-                                                            <Label Content="{Binding File}"/>
-                                                            <Label Content="{Binding DateUpdate}"/>
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </ListBox.ItemTemplate>
-                                            </ListBox>
-                                        </StackPanel>
-                                    </Border>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="Регламент">
-                </TabItem>
-                <TabItem Header="Тест">
-                    <StackPanel>
-                        <Button Click="button1_Click" Content="Добавить сообщение"/>
-                        <Label>Длительность в сек:</Label>
-                        <TextBox x:Name="textBox">3</TextBox>
-                        <Button x:Name="button" Content="Тест" Click="button_Click"/>
+        <TabControl Grid.Row="0">
+            <TabItem Header="Файлы">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <ItemsControl Grid.Row="0" x:Name="icFiles">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="1" BorderBrush="Black" Margin="1" Padding="0">
+                                    <StackPanel>
+                                        <Label Content="{Binding DirName}" FontWeight="Bold" Foreground="White" 
+                                            Background="Black" Padding="2,0,2,0"/>
+                                        <ListBox ItemsSource="{Binding Files}" BorderThickness="0" Margin="0,0,2,0" Padding="0">
+                                            <ListBox.ItemContainerStyle>
+                                                <Style>
+                                                    <Setter Property="ListBoxItem.Focusable" Value="False"/>
+                                                </Style>
+                                            </ListBox.ItemContainerStyle>
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Margin="1">
+                                                       
+                                                        <StackPanel.Style>
+                                                            <Style>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Status}" Value="None">
+                                                                        <Setter Property="StackPanel.Background" Value="#FF616161"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Status}" Value="Exist">
+                                                                        <Setter Property="StackPanel.Background" Value="#FF165524"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Status}" Value="Update">
+                                                                        <Setter Property="StackPanel.Background" Value="#FF162455"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Status}" Value="Expired">
+                                                                        <Setter Property="StackPanel.Background" Value="#FF551616"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </StackPanel.Style>
+                                                       
+                                                        <Label Content="{Binding FileName}" HorizontalAlignment="Left" Padding="0" 
+                                                            Margin="2,0,2,0" Foreground="White"/>
+                                                        <Label Content="{Binding DateUpdate}"  HorizontalAlignment="Right" 
+                                                        Padding="0" Margin="2,0,2,0" FontSize="8" Foreground="LightGray"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button Click="AddButton_Click">Добавить</Button>
+                        <Button Click="CheckButton_Click">Проверить</Button>
                     </StackPanel>
-                </TabItem>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Регламент">
+            </TabItem>
+            <TabItem Header="Тест">
+                <StackPanel>
+                    <Button Click="button1_Click" Content="Добавить сообщение"/>
+                    <Label>Длительность в сек:</Label>
+                    <TextBox x:Name="textBox" >3</TextBox>
+                </StackPanel>
+            </TabItem>
                 
-            </TabControl>
-
+        </TabControl>
     </Grid>
 </Window>

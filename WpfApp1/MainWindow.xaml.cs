@@ -17,7 +17,8 @@ namespace Assistant {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window {
+    public partial class MainWindow : Window
+    {
         private int Count;
         public CToolTipStack ToolTipStack = new CToolTipStack();
         public ObservableCollection<CDir> Dirs = new ObservableCollection<CDir>();
@@ -26,7 +27,6 @@ namespace Assistant {
             ToolTipStack.Show();
         }
 
-     
         private void button1_Click(object sender, RoutedEventArgs e) {
             int i = Convert.ToInt32(textBox.Text) * 1000;
             ToolTipStack.Push($"text Delay {i} ms dfgfdgf dfgfdg gfdgfdg dfgfdgfd dfgfdg dfgfdgw dgfgdfg werewrew xds", $"title {Count}", i);
@@ -37,25 +37,16 @@ namespace Assistant {
             ToolTipStack.Close();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e) {
-            CDir d1 = new CDir();
-            d1.Files.Add(new CFile());
-            d1.Files.Add(new CFile());
-            d1.Files.Add(new CFile());
-            Dirs.Add(d1);
-            CDir d2 = new CDir();
-            d2.Files.Add(new CFile());
-            Dirs.Add(d2);
-            CDir d3 = new CDir();
-            d3.Files.Add(new CFile());
-            d3.Files.Add(new CFile());
-            d3.Files.Add(new CFile());
-            Dirs.Add(d3);
-            CDir d4 = new CDir();
-            d4.Files.Add(new CFile());
-            d4.Files.Add(new CFile());
-            Dirs.Add(d4);
-            lbFiles.ItemsSource = Dirs;
+        private void AddButton_Click(object sender, RoutedEventArgs e) {
+            CDir d = new CDir("Temp");
+            d.Add(@"d:\Temp\1\Q.xml", new DateTime(2021, 1, 29, 21, 10, 0));
+            Dirs.Add(d);
+            icFiles.ItemsSource = Dirs;
+        }
+
+        private void CheckButton_Click(object sender, RoutedEventArgs e) {
+            foreach (CDir d in Dirs)
+                d.CheckAllFiles();
         }
     }
 }
