@@ -5,15 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.ComponentModel;
+using System.Windows.Threading;
 namespace Assistant {
+    public delegate void DFileStatusChanged(string aPath, string aStatus);
     public class CFile : INotifyPropertyChanged  {
         private DateTime fDateUpdate;
-        private DateTime fDedLine;
+        private DateTime? fDedLine;
         private string fPath;
         private string fFileName;
         private string fStatus;
         private string fDateUpdateStr;
+        public event DFileStatusChanged FileStatusChanged;
         public event PropertyChangedEventHandler PropertyChanged;
+        public  CFileChecker Owner { get; set; }
         public string FileName {
             get {
                 return fFileName;
@@ -39,10 +43,19 @@ namespace Assistant {
             set {
                 fStatus = value;
                 OnPropertyChanged("Status");
+                /*
+                if (FileStatusChanged != null) {
+                    FileStatusChanged(fPath, Status);
+
+                }
+                */
+                if (Owner != null)
+                    Owner.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new DFileStatusChanged(Owner.FileStatusChanged), 
+                        fPath, fStatus);
+
             }
         }
-        
-        public CFile(string aPath, DateTime aDedLine) {
+        public CFile(string aPath, DateTime? aDedLine) {
             fPath = aPath;
             fDedLine = aDedLine;
             DateUpdate = "-";
@@ -69,14 +82,14 @@ namespace Assistant {
                 //None or Epired
                 Status = "None";
                 DateUpdate = "-";
-                if (DateTime.Now > fDedLine)
+                if ((fDedLine !=null) && (DateTime.Now > fDedLine))
                     Status = "Expired";
             }
             return Status;
         }
         public void OnPropertyChanged(string aPropertyName) {
             if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(aPropertyName));
+                PropertyChanged(this, new PropertyChangedEventArgs(aPropertyName));           
         }
 
     }

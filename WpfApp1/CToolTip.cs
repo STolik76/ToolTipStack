@@ -11,14 +11,14 @@ namespace Assistant{
         public string Message { get; set; }
         public string Title { get; set; }
         public int Num { get; set; }
-        private CToolTipStack Owner;
+        private CToolTipStack fOwner;
         private bool fDisposed = false;
         private Timer fTimer;
         public CToolTip(string aMessage, string aTitle, int aDelay, int aNum, CToolTipStack aOwner) {
             Message = aMessage;
             Title = aTitle;
             Num = aNum;           
-            Owner = aOwner;
+            fOwner = aOwner;
             fTimer = new Timer(aDelay);
             fTimer.Elapsed += TimerElapsed;   
             fTimer.Start();
@@ -28,7 +28,7 @@ namespace Assistant{
         }
         private void TimerElapsed(object sender, ElapsedEventArgs e) {
             fTimer.Stop();
-            Owner.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new DClosedToolTip(Owner.Remove), Num);
+            fOwner.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new DClosedToolTip(fOwner.Remove), Num);
         }
         public void Dispose() {
             Dispose(true);

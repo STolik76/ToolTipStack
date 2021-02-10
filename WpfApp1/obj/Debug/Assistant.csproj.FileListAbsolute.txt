@@ -15,3 +15,4 @@ D:\Git\C#\Glass\WpfApp1\obj\Debug\Assistant.csproj.GenerateResource.cache
 D:\Git\C#\Glass\WpfApp1\obj\Debug\Assistant.csproj.CoreCompileInputs.cache
 D:\Git\C#\Glass\WpfApp1\obj\Debug\WpfApp1.exe
 D:\Git\C#\Glass\WpfApp1\obj\Debug\WpfApp1.pdb
+D:\Git\C#\Glass\WpfApp1\obj\Debug\Assistant.csproj.ResolveComReference.cache

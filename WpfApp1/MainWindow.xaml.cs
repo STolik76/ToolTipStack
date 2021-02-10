@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+
 namespace Assistant {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -20,6 +21,7 @@ namespace Assistant {
     public partial class MainWindow : Window
     {
         private int Count;
+        public CFileChecker FlCh;
         public CToolTipStack ToolTipStack = new CToolTipStack();
         public ObservableCollection<CDir> Dirs = new ObservableCollection<CDir>();
         public MainWindow() {
@@ -47,6 +49,11 @@ namespace Assistant {
         private void CheckButton_Click(object sender, RoutedEventArgs e) {
             foreach (CDir d in Dirs)
                 d.CheckAllFiles();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e) {
+            FlCh = new CFileChecker(@"d:\PTTestConf.xlsx", ToolTipStack, 30);
+            icFiles.ItemsSource = FlCh.Dirs;
         }
     }
 }
