@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Threading;
-namespace Assistant{
+namespace Assistant {
     public delegate void DClosedToolTip(int aNum);
     public class CToolTip : IDisposable {
         public string Message { get; set; }
@@ -19,7 +19,7 @@ namespace Assistant{
             Title = aTitle;
             Num = aNum;           
             fOwner = aOwner;
-            fTimer = new Timer(aDelay);
+            fTimer = new Timer(aDelay * 1000);
             fTimer.Elapsed += TimerElapsed;   
             fTimer.Start();
         }

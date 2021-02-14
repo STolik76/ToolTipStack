@@ -7,17 +7,16 @@ using System.IO;
 using System.ComponentModel;
 using System.Windows.Threading;
 namespace Assistant {
-    public delegate void DFileStatusChanged(string aPath, string aStatus);
+    public delegate void DFileStatusChanged(CFile aFile);
     public class CFile : INotifyPropertyChanged  {
-        private DateTime fDateUpdate;
-        private DateTime? fDedLine;
-        private string fPath;
-        private string fFileName;
-        private string fStatus;
-        private string fDateUpdateStr;
-        public event DFileStatusChanged FileStatusChanged;
+        private DateTime fDateUpdate;//Время обновления файла
+        private DateTime? fDedLine;//Предельное время появления файла
+        public string PathFile { get; }//Путь к файлу
+        private string fFileName;//Имя файла
+        private string fStatus;//Статус файла
+        private string fDateUpdateStr;//Строковое обозначение времени обновления файла
         public event PropertyChangedEventHandler PropertyChanged;
-        public  CFileChecker Owner { get; set; }
+        public  CFileChecker Owner { get; }
         public string FileName {
             get {
                 return fFileName;
@@ -43,31 +42,35 @@ namespace Assistant {
             set {
                 fStatus = value;
                 OnPropertyChanged("Status");
-                /*
-                if (FileStatusChanged != null) {
-                    FileStatusChanged(fPath, Status);
-
-                }
-                */
-                if (Owner != null)
-                    Owner.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new DFileStatusChanged(Owner.FileStatusChanged), 
-                        fPath, fStatus);
-
+                if (Owner != null) {
+                    Owner.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new DFileStatusChanged(Owner.FileStatusChanged), this);
+                }                    
             }
         }
-        public CFile(string aPath, DateTime? aDedLine) {
-            fPath = aPath;
+        public int ShowDelay { get; }
+        public int UpdateDelay { get; }
+        public int? ExpiredDelay { get; }
+        public int Tag { get;  }
+        public CFile(string aPath, int aShowDelay, int aUpdateDelay, DateTime? aDedLine, int? aExpiredDelay, 
+            CFileChecker aOwner, int aTag) {
+            PathFile = aPath;
             fDedLine = aDedLine;
+            //!!!!!
+            ShowDelay = aShowDelay;
+            UpdateDelay = aUpdateDelay;
+            ExpiredDelay = aExpiredDelay;
+            Owner = aOwner;
+            ///!!!!
             DateUpdate = "-";
             Status = "None";
-            FileName = Path.GetFileName(fPath);
+            FileName = Path.GetFileName(PathFile);
             fDateUpdate = DateTime.Now;
+            Tag = aTag;
         }
         public string Check() {
-            if (File.Exists(fPath) == true) {
-                DateTime t = File.GetLastWriteTime(fPath);
+            if (File.Exists(PathFile) == true) {
+                DateTime t = File.GetLastWriteTime(PathFile);
                 if ((Status == "None") || (Status == "Expired")) {
-                    //Exist
                     fDateUpdate = t;
                     DateUpdate = fDateUpdate.ToString("g");
                     Status = "Exist";

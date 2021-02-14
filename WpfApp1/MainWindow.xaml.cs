@@ -18,21 +18,21 @@ namespace Assistant {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {
-        private int Count;
+    public partial class MainWindow : Window {
         public CFileChecker FlCh;
         public CToolTipStack ToolTipStack = new CToolTipStack();
         public ObservableCollection<CDir> Dirs = new ObservableCollection<CDir>();
         public MainWindow() {
             InitializeComponent();
             ToolTipStack.Show();
+            FlCh = new CFileChecker(@"d:\PTTestConf.xlsx", ToolTipStack, 30);
+            icFiles.ItemsSource = FlCh.Dirs;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e) {
-            int i = Convert.ToInt32(textBox.Text) * 1000;
-            ToolTipStack.Push($"text Delay {i} ms dfgfdgf dfgfdg gfdgfdg dfgfdgfd dfgfdg dfgfdgw dgfgdfg werewrew xds", $"title {Count}", i);
-            Count++;
+            //int i = Convert.ToInt32(textBox.Text) * 1000;
+            //ToolTipStack.Push($"text Delay {i} ms dfgfdgf dfgfdg gfdgfdg dfgfdgfd dfgfdg dfgfdgw dgfgdfg werewrew xds", $"title {Count}", i);
+            //Count++;
         }
 
         private void Window_Closed(object sender, EventArgs e) {
@@ -40,10 +40,10 @@ namespace Assistant {
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e) {
-            CDir d = new CDir("Temp");
-            d.Add(@"d:\Temp\1\Q.xml", new DateTime(2021, 1, 29, 21, 10, 0));
-            Dirs.Add(d);
-            icFiles.ItemsSource = Dirs;
+            //CDir d = new CDir("Temp");
+            //d.Add(@"d:\Temp\1\Q.xml", new DateTime(2021, 1, 29, 21, 10, 0));
+            //Dirs.Add(d);
+            //icFiles.ItemsSource = Dirs;
         }
 
         private void CheckButton_Click(object sender, RoutedEventArgs e) {
