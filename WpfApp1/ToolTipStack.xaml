@@ -13,6 +13,7 @@
             ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
+                    <!-- Bottom - снизу-вверх, Top - сверху-вниз -->
                     <VirtualizingStackPanel VerticalAlignment="Bottom"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>

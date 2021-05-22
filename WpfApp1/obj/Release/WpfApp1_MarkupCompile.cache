@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Git\C#\Glass\WpfApp1\obj\Debug\
+D:\Git\C#\Glass\WpfApp1\obj\Release\
 WpfApp1
 none
 false
-DEBUG;TRACE
+TRACE
 D:\Git\C#\Glass\WpfApp1\App.xaml
 2292360112
 
-12-1014492041
-17596450925
+10-1495275731
+16382064189
 ToolTipStack.xaml;MainWindow.xaml;
 
 False

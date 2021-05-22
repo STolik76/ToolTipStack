@@ -35,7 +35,7 @@ namespace Assistant{
                     //d.Owner = this;
                     Dirs.Add(d);
                 }
-                string p = w.Cells[r, 2].Value;
+                string p = GetStrByTemplate(w.Cells[r, 2].Value);
                 int sd = Convert.ToInt32(w.Cells[r, 3].Value);
                 int ud = Convert.ToInt32(w.Cells[r, 4].Value);
                 DateTime? t = null;
@@ -81,7 +81,38 @@ namespace Assistant{
         private void CheckAll() {
             foreach (CDir d in Dirs)
                 d.CheckAllFiles();
-
+        }
+        public string GetStrByTemplate(string aTemplate) {
+            string s;
+            DateTime d = DateTime.Today;
+            string dd = d.ToString("dd");
+            string mm = d.ToString("MM");
+            string yy = d.ToString("yy");
+            string yyyy = d.ToString("yyyy");
+            DateTime d1 = d.AddDays(1);
+            string dd1 = d1.ToString("dd");
+            string mm1 = d1.ToString("MM");
+            string yy1 = d1.ToString("yy");
+            string yyyy1 = d1.ToString("yyyy");
+            DateTime d2 = d.AddDays(2);
+            string dd2 = d2.ToString("dd");
+            string mm2 = d2.ToString("MM");
+            string yy2 = d2.ToString("yy");
+            string yyyy2 = d2.ToString("yyyy");
+            s = aTemplate
+                .Replace("%ДД%", dd)
+                .Replace("%ММ%", mm)
+                .Replace("%ГГ%", yy)
+                .Replace("%ГГГГ%", yyyy)
+                .Replace("%ДД1%", dd1)
+                .Replace("%ММ1%", mm1)
+                .Replace("%ГГ1%", yy1)
+                .Replace("%ГГГГ1%", yyyy1)
+                .Replace("%ДД2%", dd2)
+                .Replace("%ММ2%", mm2)
+                .Replace("%ГГ2%", yy2)
+                .Replace("%ГГГГ2%", yyyy2);
+            return s;
         }
     }
 }

@@ -26,6 +26,7 @@ namespace Assistant {
             InitializeComponent();
             Items = new ObservableCollection<CToolTip>();
             lbToolTip.ItemsSource = Items;
+       
         }
         private bool IsExist(string aMessage, string aTitle) {
             foreach (CToolTip t in Items)
@@ -43,7 +44,7 @@ namespace Assistant {
         public void Remove(int aNum) {
             //Debug.WriteLine(aNum.ToString());
             try {            
-                    Items.Remove(Items.Single(x => x.Num == aNum));
+                Items.Remove(Items.Single(x => x.Num == aNum));
             }
             catch (Exception e) {
                 Debug.WriteLine("Нет");
@@ -56,6 +57,12 @@ namespace Assistant {
             tp.Dispose();
             Remove(n);
             //Debug.WriteLine(n.ToString());
+        }
+        public void SetPosition(int aLeft, int aTop, int aWidth, int aHeight) {
+            Left = aLeft;
+            Top = aTop;
+            Width = aWidth;
+            Height = aHeight;
         }
 
     }
